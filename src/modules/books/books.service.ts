@@ -33,7 +33,7 @@ export class BooksService {
     return bookData;
   }
 
-    /* Find a book by its name */
+  /* Find a book by its name */
 
   async findByName(name: string): Promise<BooksEntity> {
     const bookData: BooksEntity = await this.booksRepository.findByName(name);
@@ -53,7 +53,7 @@ export class BooksService {
     return await this.booksRepository.insertOne(data);
   }
 
-    /* List all books */
+  /* List all books */
 
   async list(): Promise<BooksEntity[]> {
     const booksData: BooksEntity[] = await this.booksRepository.list();
@@ -63,7 +63,7 @@ export class BooksService {
     return booksData;
   }
 
-    /* Update a book */
+  /* Update a book */
 
   async updateOne(data: iUpdateBookProps): Promise<BooksEntity> {
     await this.findById(data.id);
