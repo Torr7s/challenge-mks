@@ -5,7 +5,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { BooksModule } from '@modules/books.module';
+import { BooksModule } from '@modules/books/books.module';
 
 @Module({
   imports: [
