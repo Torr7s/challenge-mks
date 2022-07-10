@@ -1,8 +1,6 @@
-import { BadRequestException } from '@nestjs/common';
+import { BadRequestException, NotFoundException } from '@nestjs/common';
 
-export class BookException extends BadRequestException {}
-
-export class BookNotFoundException extends BookException {
+export class BookNotFoundException extends NotFoundException {
   constructor() {
     super(
       'Invalid book ID provided.',
@@ -11,7 +9,7 @@ export class BookNotFoundException extends BookException {
   }
 }
 
-export class BooksNotFoundException extends BookException {
+export class BooksNotFoundException extends NotFoundException {
   constructor() {
     super(
       'No books were found.',
@@ -20,7 +18,7 @@ export class BooksNotFoundException extends BookException {
   }
 }
 
-export class BookExistsException extends BookException {
+export class BookExistsException extends BadRequestException {
   constructor() {
     super(
       'Book already exists.',
