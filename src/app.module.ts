@@ -1,3 +1,5 @@
+import { join } from 'path';
+
 import { Module } from '@nestjs/common';
 
 import { ConfigModule } from '@nestjs/config';
@@ -16,8 +18,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       username: process.env.TYPEORM_USERNAME,
       password: process.env.TYPEORM_PASSWORD,
       database: process.env.TYPEORM_DATABASE,
-      entities: ['src/modules/**/infra/typeorm/entities/*.{js,ts}'],
-      migrations: ['src/shared/typeorm/migrations/*.{js,ts}'],
+      entities: [
+        join(__dirname, 'modules', '**', 'infra', '**/**', '*.entity.{ts,js}')
+      ],
       synchronize: true
     })
   ]
