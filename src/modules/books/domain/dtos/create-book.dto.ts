@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { 
   IsNotEmpty, IsOptional, 
   IsNumber, 
@@ -11,18 +12,22 @@ export class CreateBookDto extends BooksEntity {
   @IsOptional()
   id?: string;
 
+  @ApiProperty()
   @IsString()
   @IsNotEmpty()
   name: string;
 
+  @ApiProperty()
   @IsString()
   @IsNotEmpty()
   author: string;
 
+  @ApiProperty()
   @IsNumber()
   @IsNotEmpty()
   pages: number;
 
+  @ApiProperty()
   @IsString()
   @IsNotEmpty()
   url: string;
