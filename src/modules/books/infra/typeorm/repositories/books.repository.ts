@@ -1,4 +1,6 @@
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+
 import { Repository } from 'typeorm';
 
 import { iCreateBookProps, iUpdateBookProps } from '@types';
@@ -7,6 +9,7 @@ import { iBooksRepository } from '@modules/books/domain/interfaces/books.interfa
 
 import { BooksEntity } from '../entities/books.entity';
 
+@Injectable()
 export class BooksRepository implements iBooksRepository {
   constructor(
     @InjectRepository(BooksEntity)
@@ -17,10 +20,18 @@ export class BooksRepository implements iBooksRepository {
     await this.booksRepository.delete(id);
   }
 
-  async findOne(id: string): Promise<BooksEntity> {
-    return await this.booksRepository.findOneOrFail({
+  async findById(id: string): Promise<BooksEntity> {
+    return await this.booksRepository.findOne({
       where: {
         id
+      }
+    });
+  }
+
+  async findByName(name: string): Promise<BooksEntity> {
+    return await this.booksRepository.findOne({
+      where: {
+        name
       }
     });
   }
@@ -35,15 +46,10 @@ export class BooksRepository implements iBooksRepository {
     return await this.booksRepository.find();
   }
 
-  async updateOne({ id, name, author, pages, url }: iUpdateBookProps): Promise<BooksEntity> {
-    const book: BooksEntity = await this.findOne(id);
+  async updateOne(data: iUpdateBookProps): Promise<BooksEntity> {
+    const book: BooksEntity = await this.findById(data.id);
 
-    this.booksRepository.merge(book, { 
-      name, 
-      author, 
-      pages, 
-      url 
-    });
+    this.booksRepository.merge(book, data);
 
     return await this.booksRepository.save(book);
   }
