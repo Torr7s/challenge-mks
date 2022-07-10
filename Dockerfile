@@ -2,8 +2,8 @@ FROM node
 
 WORKDIR /usr/app
 
-COPY package*.json    ./
-COPY .env.development ./
+COPY package*.json ./
+COPY .env          ./
 
 RUN yarn
 
