@@ -5,6 +5,8 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
+import { BooksModule } from '@modules/books.module';
+
 @Module({
   imports: [
     ConfigModule.forRoot({ 
@@ -22,7 +24,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         join(__dirname, 'modules', '**', 'infra', '**/**', '*.entity.{ts,js}')
       ],
       synchronize: true
-    })
+    }),
+    BooksModule
   ]
 })
 export class AppModule {}
