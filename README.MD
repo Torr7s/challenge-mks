@@ -6,11 +6,11 @@ Access the application requirements **[here](hhttps://github.com/robsoncezario/m
 
 ## Stacks used
 
-- Node.Js
-- Typescript
-- Docker, docker-compose
-- NestJs
-- TypeORM (PostgreSQL)
+- (2.5y exp.) Node.Js
+- (1.5y exp.) Typescript
+- (1y exp.)   Docker, docker-compose
+- (1y exp.)   NestJs
+- (1y exp.)   TypeORM (PostgreSQL)
 
 ## Running the project
 
