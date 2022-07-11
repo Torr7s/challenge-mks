@@ -2,7 +2,7 @@
 
 This challenge was proposed for a backend developer position, where a simple CRUD should be created, using Typescript, Nest.Js, Swagger and TypeORM.
 
-Access the application requirements **[here](hhttps://github.com/robsoncezario/mks-backend-challenge/blob/main/README.md)** (pt-BR).
+Access the application requirements **[here](https://github.com/robsoncezario/mks-backend-challenge/blob/main/README.md)** (pt-BR).
 
 ## Stacks used
 
