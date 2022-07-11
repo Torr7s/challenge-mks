@@ -26,6 +26,7 @@ export class BooksEntity {
   constructor(book?: Partial<BooksEntity>) {
     this.id = book?.id;
     this.name = book?.name;
+    this.author = book?.author;
     this.pages = book?.pages;
     this.url = book?.url;
     this.createdAt = book?.createdAt;
