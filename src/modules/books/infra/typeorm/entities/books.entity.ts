@@ -1,4 +1,9 @@
-import { Entity, Column, CreateDateColumn, UpdateDateColumn, PrimaryGeneratedColumn } from 'typeorm';
+import { 
+  Entity, 
+  Column, 
+  CreateDateColumn, UpdateDateColumn, 
+  PrimaryGeneratedColumn 
+} from 'typeorm';
 
 @Entity('books')
 export class BooksEntity {
@@ -29,7 +34,5 @@ export class BooksEntity {
     this.author = book?.author;
     this.pages = book?.pages;
     this.url = book?.url;
-    this.createdAt = book?.createdAt;
-    this.updatedAt = book?.updatedAt;
   }
 }
