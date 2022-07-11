@@ -31,20 +31,22 @@ describe('BooksService', (): void => {
 
   describe('deleteOne', (): void => {
     it('should not be able to delete a non-existent book', async (): Promise<void> => {
-      await expect(service.deleteOne('123abcd'))
-        .rejects
-        .toThrow('No book was found.');
+      expect(async (): Promise<void> => {
+        await service.deleteOne('123abcd');
+      }).rejects.toThrow('No book was found.');
     });
 
     it('should be able to delete a book', async (): Promise<void> => {
-      const { id }: BooksEntity = await service.insertOne({
-        name: 'test_name',
-        author: 'test_author',
-        pages: 1,
-        url: 'test_url'
-      });
+      expect(async (): Promise<void> => {
+        const { id }: BooksEntity = await service.insertOne({
+          name: 'test_name',
+          author: 'test_author',
+          pages: 1,
+          url: 'test_url'
+        });
 
-      expect(service.deleteOne(id)).toBeTruthy();
+        await service.deleteOne(id);
+      }).toBeTruthy();
     });
   });
 
@@ -59,19 +61,17 @@ describe('BooksService', (): void => {
         url: 'test_url'
       });
 
-      await expect(
-        service.insertOne({
+      expect(async (): Promise<void> => {
+        await service.insertOne({
           name: 'test_name',
           author: 'test_author',
           pages: 1,
           url: 'test_url'
         })
-      )
-        .rejects
-        .toThrow('Book already exists.');
+      }).rejects.toThrow('Book already exists');
     });
 
-    it('should be able to insert a book', (): void => {
+    it('should be able to insert a book', async (): Promise<void> => {
       expect(
         service.insertOne({
           name: 'test_name',
@@ -87,9 +87,9 @@ describe('BooksService', (): void => {
 
   describe('findById', (): void => {
     it('should not be able to find a book by an invalid id', async (): Promise<void> => {
-      await expect(service.findById('123abcd'))
-        .rejects
-        .toThrow('No book was found.');
+      expect(async(): Promise<void> => {
+        await service.findById('123abcd');
+      }).rejects.toThrow('No book was found.');
     });
 
     it('should be able to find a book by its id', async (): Promise<void> => {
@@ -110,9 +110,9 @@ describe('BooksService', (): void => {
 
   describe('findByName', (): void => {
     it('should not be able to find a book by an unregistered name', async (): Promise<void> => {
-      await expect(service.findByName('**test_name'))
-        .rejects
-        .toThrow('No book was found.');
+      expect(async(): Promise<void> => {
+        await service.findByName('**test_name');
+      }).rejects.toThrow('No book was found.');
     });
 
     it('should be able to find a book by its name', async (): Promise<void> => {
@@ -133,9 +133,9 @@ describe('BooksService', (): void => {
 
   describe('list', (): void => {
     it('should not be able to list books for lack of records', async (): Promise<void> => {
-      await expect(service.list())
-        .rejects
-        .toThrow('No books were found.');
+      expect(async(): Promise<void> => {
+        await service.list();
+      }).rejects.toThrow('No books were found.');
     });
 
     it('should be able to list all books', async (): Promise<void> => {
@@ -146,7 +146,6 @@ describe('BooksService', (): void => {
       const list: BooksEntity[] = await service.list();
 
       expect(list).toBeDefined();
-      expect(list).toBeInstanceOf(Array);
     });
   });
 
@@ -154,16 +153,14 @@ describe('BooksService', (): void => {
 
   describe('updateOne', (): void => {
     it('should not be possible to update an unregistered book.', async (): Promise<void> => {
-      await expect(
-        service.updateOne({
+      expect(async (): Promise<void> => {
+        await service.updateOne({
           name: 'test_name',
           author: 'test_author',
           pages: 1,
           url: 'test_url'
         })
-      )
-        .rejects
-        .toThrow('No book was found.');
+      }).rejects.toThrow('No book was found.');
     });
 
     it('should be possible to update a book', async (): Promise<void> => {
