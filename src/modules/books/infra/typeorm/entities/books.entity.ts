@@ -18,8 +18,17 @@ export class BooksEntity {
   url: string;
 
   @CreateDateColumn()
-  createdAt: Date;
+  createdAt?: Date;
 
   @UpdateDateColumn()
-  updatedAt: Date;
+  updatedAt?: Date;
+
+  constructor(book?: Partial<BooksEntity>) {
+    this.id = book?.id;
+    this.name = book?.name;
+    this.pages = book?.pages;
+    this.url = book?.url;
+    this.createdAt = book?.createdAt;
+    this.updatedAt = book?.updatedAt;
+  }
 }
