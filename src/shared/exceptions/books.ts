@@ -3,8 +3,8 @@ import { BadRequestException, NotFoundException } from '@nestjs/common';
 export class BookNotFoundException extends NotFoundException {
   constructor() {
     super(
-      'Invalid book ID provided.',
-      'No book with this name was found in the system.'
+      'No book was found.',
+      'There are no books registered in the system with this identifier.'
     );
   }
 }
