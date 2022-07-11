@@ -37,14 +37,14 @@ describe('BooksService', (): void => {
     });
 
     it('should be able to delete a book', async (): Promise<void> => {
-      expect(async (): Promise<void> => {
-        const { id }: BooksEntity = await service.insertOne({
-          name: 'test_name',
-          author: 'test_author',
-          pages: 1,
-          url: 'test_url'
-        });
+      const { id }: BooksEntity = await service.insertOne({
+        name: 'test_name',
+        author: 'test_author',
+        pages: 1,
+        url: 'test_url'
+      });
 
+      expect(async (): Promise<void> => {
         await service.deleteOne(id);
       }).toBeTruthy();
     });
@@ -187,9 +187,7 @@ describe('BooksService', (): void => {
           pages: 2,
           url: 'url_test'
         })
-      )
-        .resolves
-        .toEqual(updatedBook);
+      ).resolves.toEqual(updatedBook);
     });
   });
 });
