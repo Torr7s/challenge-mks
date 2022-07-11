@@ -6,12 +6,6 @@ import { BooksEntity } from '../infra/typeorm/entities/books.entity';
 import { BooksRepository } from '../infra/typeorm/repositories/books.repository';
 import { BooksRepositoryInMemory } from '../infra/typeorm/repositories/inMemory/books.in-memo.repository';
 
-const booksList: BooksEntity[] = [
-  { name: 'test_name_1', author: 'test_author_1', pages: 1, url: 'test_url_1' },
-  { name: 'test_name_2', author: 'test_author_2', pages: 2, url: 'test_url_2' },
-  { name: 'test_name_3', author: 'test_author_3', pages: 3, url: 'test_url_3' },
-]
-
 describe('BooksService', (): void => {
   let service: BooksService;
 
