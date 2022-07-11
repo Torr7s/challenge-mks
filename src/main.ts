@@ -7,10 +7,12 @@ import { AppModule } from './app.module';
 (async (): Promise<void> => {
   const app: INestApplication = await NestFactory.create(AppModule);
 
-  app.useGlobalPipes(new ValidationPipe({
-    whitelist: true,
-    forbidNonWhitelisted: true
-  }));
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true
+    })
+  );
 
   const config: Omit<OpenAPIObject, 'paths'> = new DocumentBuilder()
     .setTitle('Swagger Documentation - MKS Backend Challenge')
