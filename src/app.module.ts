@@ -1,6 +1,6 @@
 import { join } from 'path';
 
-import { CacheModule, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -9,9 +9,6 @@ import { BooksModule } from '@modules/books/books.module';
 
 @Module({
   imports: [
-    CacheModule.register({
-      isGlobal: true
-    }),
     ConfigModule.forRoot({ 
       envFilePath: '.env',
       isGlobal: true 
