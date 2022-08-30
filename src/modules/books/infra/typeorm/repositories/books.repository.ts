@@ -42,7 +42,7 @@ export class BooksRepository implements iBooksRepository {
   }
 
   async list(): Promise<BooksEntity[]> {
-    return await this.booksRepository.find();
+    return this.booksRepository.find();
   }
 
   async updateOne(data: iUpdateBookProps): Promise<BooksEntity> {
