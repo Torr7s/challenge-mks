@@ -8,5 +8,5 @@ export interface iBooksRepository {
   findByName(name: string): Promise<BooksEntity>;
   insertOne(data: iCreateBookProps): Promise<BooksEntity>;
   list(): Promise<BooksEntity[]>;
-  updateOne(data: iUpdateBookProps): Promise<BooksEntity>;
+  updateOne(id: string, data: iUpdateBookProps): Promise<BooksEntity>;
 }
