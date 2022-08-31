@@ -11,13 +11,11 @@ import { BookNotFoundException } from '@shared/exceptions/books';
 export class UpdateBookService {
   constructor(private booksRepository: BooksRepository) {};
 
-  async perform(data: iUpdateBookProps): Promise<BooksEntity> {
+  async perform(id: string, data: iUpdateBookProps): Promise<BooksEntity> {
     const book: BooksEntity = await this.booksRepository.findByName(data.name);
 
     if (!book) throw new BookNotFoundException();
 
-    const updatedBook: BooksEntity = await this.booksRepository.updateOne(data);
-
-    return updatedBook;
+    return this.booksRepository.updateOne(id, data);
   }
 }

@@ -1,9 +1,11 @@
 import { Response } from 'express';
 import { 
   Controller, 
-  Post, 
   Body, 
-  Res 
+  Res, 
+  Put,
+  Param,
+  ParseUUIDPipe
 } from '@nestjs/common';
 import { 
   ApiTags, 
@@ -14,7 +16,7 @@ import {
 
 import { UpdateBookService } from './update-book.service';
 
-import { CreateBookDto } from '@modules/books/domain/dtos/create-book.dto';
+import { UpdateBookDto } from '@modules/books/domain/dtos/update-book.dto';
 
 import { BookResponse } from '@modules/books/domain/swagger/responses/book';
 import { BooksEntity } from '@modules/books/infra/typeorm/entities/books.entity';
@@ -25,7 +27,7 @@ export class UpdateBookController {
   constructor(private updateBookService: UpdateBookService) {};
 
   @ApiOperation({ description: 'Create a new book' })
-  @ApiBody({ type: CreateBookDto })
+  @ApiBody({ type: UpdateBookDto })
   @ApiResponse({ 
     status: 200, 
     description: 'Book successfully created', 
@@ -36,12 +38,13 @@ export class UpdateBookController {
     description: 'Book already exists' 
   })
 
-  @Post('/')
+  @Put('/:id')
   async handle(
-    @Body() data: CreateBookDto, 
+    @Param('id', new ParseUUIDPipe()) id: string,
+    @Body() data: UpdateBookDto, 
     @Res() response: Response
   ): Promise<Response> {
-    const book: BooksEntity = await this.updateBookService.perform(data);
+    const book: BooksEntity = await this.updateBookService.perform(id, data);
 
     return response.json(book);
   }
