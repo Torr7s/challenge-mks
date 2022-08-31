@@ -33,11 +33,11 @@ export class BooksRepositoryInMemory implements iBooksRepository {
     return this.books;
   }
 
-  async updateOne(data: iUpdateBookProps): Promise<BooksEntity> {
-    const bookIndex: number = this.books.findIndex((book: BooksEntity): boolean => book.id === data.id);
+  async updateOne(id: string, data: iUpdateBookProps): Promise<BooksEntity> {
+    const bookIndex: number = this.books.findIndex((book: BooksEntity): boolean => book.id === id);
 
     this.books[bookIndex] = data as any as BooksEntity;
 
-    return await this.findById(data.id);
+    return await this.findById(id);
   }
 }
