@@ -16,7 +16,7 @@ import {
 import { DeleteBookService } from './delete-book.service';
 
 @ApiTags('Books')
-@Controller('/api/tags')
+@Controller('/api/books')
 export class DeleteBookController {
   constructor(private deleteBookService: DeleteBookService) {};
 
