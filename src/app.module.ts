@@ -1,6 +1,6 @@
 import { join } from 'path';
 
-import { Module } from '@nestjs/common';
+import { CacheModule, Module } from '@nestjs/common';
 
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -9,9 +9,13 @@ import { BooksModule } from '@modules/books/books.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ 
+    CacheModule.register({
+      isGlobal: true,
+      ttl: 60 * 60 * 24
+    }),
+    ConfigModule.forRoot({
       envFilePath: '.env',
-      isGlobal: true 
+      isGlobal: true
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
